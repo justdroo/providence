@@ -1,12 +1,29 @@
 {
-    "name": "providence",
-    "description": "an api for Sankofa to record hyperlocal data on hate incidents in the community",
-    "repository": "https://github.com/justdroo/providence",
-    "license": "TBD",
-    "main": "server.js",
-    "dependencies": {
-        "express": "~4.0.0",
-        "mongoose": "~3.6.13",
-        "body-parser": "~1.0.1"
-    }
+  "name": "providence",
+  "version": "0.0.1",
+  "description": "an api for Sankofa to record hyperlocal data on hate incidents in the community",
+  "main": "server.js",
+  "scripts": {
+    "test": "node ./node_modules/mocha/bin/mocha --timeout 120000",
+    "linter": "./node_modules/.bin/eslint ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/justdroo/providence"
+  },
+  "license": "TBD",
+  "dependencies": {
+      "express": "~4.0.0",
+      "mongodb": "^2.2.24",
+      "mongoose": "~3.6.13",
+      "body-parser": "~1.0.1",
+      "dotenv-safe": "^4.0.3"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "chai-http": "^3.0.0",
+    "eslint": "^3.18.0",
+    "mocha": "^3.2.0",
+    "mockgoose": "^7.1.0"
+  }
 }
