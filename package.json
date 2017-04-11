@@ -1,0 +1,12 @@
+{
+    "name": "providence",
+    "description": "an api for Sankofa to record hyperlocal data on hate incidents in the community",
+    "repository": "https://github.com/justdroo/providence",
+    "license": "TBD",
+    "main": "server.js",
+    "dependencies": {
+        "express": "~4.0.0",
+        "mongoose": "~3.6.13",
+        "body-parser": "~1.0.1"
+    }
+}
