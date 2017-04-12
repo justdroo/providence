@@ -19,8 +19,8 @@ let db = require('./app/database/connection');
 //
 // Models
 //
-// let Acronym = require('./app/models/acronym');
-// let User = require('./app/models/user');
+let Incident = require('./app/models/incident');
+let Question = require('./app/models/question');
 
 //
 // Controllers
