@@ -14,16 +14,12 @@ var Schema = mongoose.Schema;
 var IncidentSchema = new Schema({
     date: Date,
     location: String,
+    context: String,
     victim: {
       name: String,
       anonymous: Boolean,
       demographic: {}
-    },
-    details: [
-      {prompt: String,
-      context: String,
-      question_id: Schema.ObjectId}
-    ]
+    }
 });
 
 // ====================

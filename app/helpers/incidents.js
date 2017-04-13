@@ -14,5 +14,4 @@
 exports.report = (incident, info) => {
   incident.location     = info.location;
   incident.date         = info.date;
-  incident.details      = info.details;
 }

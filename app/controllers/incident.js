@@ -40,9 +40,8 @@ exports.getAll = (req, res) => {
 // // Create an incident
 // //
 exports.add = (req, res) => {
-  let victim = req.body.victim
 
-  if (!victim) {
+  if (!req.date || !req.location) {
     res.json({
       success: false,
       message: 'Incidents need to be reported by a victim. Please ensure that the request includes a victim.',
