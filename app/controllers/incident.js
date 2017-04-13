@@ -37,11 +37,34 @@ exports.getAll = (req, res) => {
 };
 
 // //
+// // Get a specific incident
+// //
+exports.get = (req, res) => {
+  let id = req.params.id;
+
+  Incident.find({ _id: id }, (err, incidents) => {
+    if (err) {
+      res.json({
+        success: false,
+        error: err
+      });
+    } else {
+      res.json({
+        success: true,
+        message: `Incident for id: ${id}`,
+        count: incidents.length,
+        incidents: appHelper.stripAll(incidents, ['_id', 'location', 'date', 'context'])
+      });
+    }
+  });
+};
+
+// //
 // // Create an incident
 // //
 exports.add = (req, res) => {
 
-  if (!req.date || !req.location) {
+  if (!req.incident) {
     res.json({
       success: false,
       message: 'Incidents need to be reported by a victim. Please ensure that the request includes a victim.',
@@ -63,34 +86,11 @@ exports.add = (req, res) => {
         res.json({
           success: true,
           message: 'A new Incident has been added to the database.',
-          incident: appHelper.strip(incident, ['_id', 'location', 'date', 'victim'])
+          incident: appHelper.strip(incident, ['_id', 'location', 'date', 'context'])
         });
       }
     });
   }
-};
-
-// //
-// // Get a specific incident
-// //
-exports.get = (req, res) => {
-  let id = req.params.id;
-
-  Incident.find({ _id: id }, (err, incidents) => {
-    if (err) {
-      res.json({
-        success: false,
-        error: err
-      });
-    } else {
-      res.json({
-        success: true,
-        message: `Incident for id: ${id}`,
-        count: incidents.length,
-        incidents: appHelper.stripAll(incidents, ['_id', 'location', 'date', 'victim', 'details'])
-      });
-    }
-  });
 };
 
 //
@@ -115,7 +115,7 @@ exports.update = (req, res) => {
         res.json({
           success: true,
           message: `Incident for id: ${incident.id} succecfully updated`,
-          incident: appHelper.strip(incident, ['_id', 'location', 'date', 'victim'])
+          incident: appHelper.strip(incident, ['_id', 'location', 'date', 'context'])
         });
       }
     });
