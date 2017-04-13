@@ -2,6 +2,7 @@
 // Modules
 // ====================
 
+
 var mongoose = require('mongoose');
 
 // ====================
@@ -21,7 +22,7 @@ var IncidentSchema = new Schema({
     details: [
       {prompt: String,
       context: String,
-      question_id: ObjectId}
+      question_id: Schema.ObjectId}
     ]
 });
 

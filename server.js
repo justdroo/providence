@@ -25,9 +25,7 @@ let Question = require('./app/models/question');
 //
 // Controllers
 //
-// let AcronymController = require('./app/controllers/acronym');
-// let AuthController = require('./app/controllers/auth');
-// let UserController = require('./app/controllers/user');
+let IncidentController = require('./app/controllers/incident');
 
 // ====================
 // App Setup
@@ -58,9 +56,9 @@ router.get('/', (req, res) => {
 //
 // API Routes
 //
-// router.route('/acronyms')
-  // .get(AcronymController.getAll)
-//   .post(AuthController.bouncer, AcronymController.add);
+router.route('/incident')
+  // .get(IncidentController.getAll)
+  .post(IncidentController.add);
 // router.route('/acronyms/:name')
 //   .get(AcronymController.get);
 // router.route('/auth')
