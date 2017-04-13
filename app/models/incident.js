@@ -18,7 +18,7 @@ var IncidentSchema = new Schema({
     victim: {
       name: String,
       anonymous: Boolean,
-      demographic: {}
+      // demographic: {}
     }
 });
 
