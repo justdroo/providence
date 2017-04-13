@@ -17,7 +17,8 @@
       "mongodb": "^2.2.24",
       "mongoose": "~3.6.13",
       "body-parser": "~1.0.1",
-      "dotenv-safe": "^4.0.3"
+      "dotenv-safe": "^4.0.3",
+      "lodash": "^4.17.4"
   },
   "devDependencies": {
     "chai": "^3.5.0",

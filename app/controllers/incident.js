@@ -8,7 +8,8 @@ let Incident = require('../models/incident');
 // Helpers
 // ====================
 
-
+let appHelper = require('../helpers/app');
+let incidentHelper = require('../helpers/incidents')
 
 // ====================
 // RESTful Methods
@@ -17,40 +18,41 @@ let Incident = require('../models/incident');
 //
 // Get all incidents
 //
-// exports.getAll = (req, res) => {
-//   Acronym.find((err, acronyms) => {
-//     if (err) {
-//       res.json({
-//         success: false,
-//         error: err
-//       });
-//     } else {
-//       res.json({
-//         success: true,
-//         message: 'Here are all of the Excella acronyms currently in the database.',
-//         count: acronyms.length,
-//         acronyms: appHelper.stripAll(acronyms, ['name', 'meaning'])
-//       });
-//     }
-//   });
-// };
-//
+exports.getAll = (req, res) => {
+  Incident.find((err, incidents) => {
+    if (err) {
+      res.json({
+        success: false,
+        error: err
+      });
+    } else {
+      res.json({
+        success: true,
+        message: 'Here are all of the Incidents currently in the database.',
+        count: incidents.length,
+        incidents: appHelper.stripAll(incidents, ['victim', '_id'])
+      });
+    }
+  });
+};
+
 // //
 // // Create an incident
 // //
 exports.add = (req, res) => {
-  if (!req.body.victim) {
+  let victim = req.body.victim
+
+  if (!victim) {
     res.json({
       success: false,
       message: 'Incidents need to be reported by a victim. Please ensure that the request includes a victim.',
-      victim: req.body.victim,
+      victim: victim,
     });
   } else {
     let incident = new Incident();
+    let info = req.body
 
-    incident.victim = req.body.victim;
-    // incident.location = req.body.location;
-    // incident.date = req.body.date;
+    incidentHelper.report(incident, info)
 
     incident.save((err) => {
       if (err) {
@@ -62,7 +64,7 @@ exports.add = (req, res) => {
         res.json({
           success: true,
           message: 'A new Incident has been added to the database.',
-          // acronym: appHelper.strip(acronym, ['name', 'meaning'])
+          incident: appHelper.strip(incident, ['_id', 'location', 'date', 'victim'])
         });
       }
     });
@@ -70,24 +72,53 @@ exports.add = (req, res) => {
 };
 
 // //
-// // Get a specific acronym
+// // Get a specific incident
 // //
-// exports.get = (req, res) => {
-//   let name = req.params.name.toUpperCase();
+exports.get = (req, res) => {
+  let id = req.params.id;
+
+  Incident.find({ _id: id }, (err, incidents) => {
+    if (err) {
+      res.json({
+        success: false,
+        error: err
+      });
+    } else {
+      res.json({
+        success: true,
+        message: `Incident for id: ${id}`,
+        count: incidents.length,
+        incidents: appHelper.stripAll(incidents, ['_id', 'location', 'date', 'victim', 'details'])
+      });
+    }
+  });
+};
+
 //
-//   Acronym.find({ name: name }, (err, acronyms) => {
-//     if (err) {
-//       res.json({
-//         success: false,
-//         error: err
-//       });
-//     } else {
-//       res.json({
-//         success: true,
-//         message: `Here are all of the Excella acronym meanings for ${name}`,
-//         count: acronyms.length,
-//         acronyms: appHelper.stripAll(acronyms, ['name', 'meaning'])
-//       });
-//     }
-//   });
-// };
+// Update an incident
+//
+exports.update = (req, res) => {
+  let id = req.params.id;
+  let info = req.body
+
+  Incident.find({ _id: id }, (err, incidents) => {
+    let incident = incidents[0]
+
+    incidentHelper.report(incident, info)
+
+    incident.save((err) => {
+      if (err) {
+        res.json({
+          success: false,
+          error: err
+        });
+      } else {
+        res.json({
+          success: true,
+          message: `Incident for id: ${incident.id} succecfully updated`,
+          incident: appHelper.strip(incident, ['_id', 'location', 'date', 'victim'])
+        });
+      }
+    });
+  });
+};

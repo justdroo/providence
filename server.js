@@ -57,10 +57,17 @@ router.get('/', (req, res) => {
 // API Routes
 //
 router.route('/incident')
-  // .get(IncidentController.getAll)
+  .get(IncidentController.getAll)
   .post(IncidentController.add);
-// router.route('/acronyms/:name')
-//   .get(AcronymController.get);
+router.route('/incident/:id')
+  .get(IncidentController.get)
+  .put(IncidentController.update);
+router.route('/incident/:id/victim')
+  .get(VictimController.get)
+  .put(VictimController.update);
+router.route('/incident/:id/details')
+  .get(DetailsController.get)
+  .put(DetailsController.update);
 // router.route('/auth')
 //   .post(AuthController.authenticate);
 // router.route('/users')
