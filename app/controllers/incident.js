@@ -30,7 +30,7 @@ exports.getAll = (req, res) => {
         success: true,
         message: 'Here are all of the Incidents currently in the database.',
         count: incidents.length,
-        incidents: appHelper.stripAll(incidents, ['victim', '_id'])
+        incidents: appHelper.stripAll(incidents, incidentHelper.responseKeys())
       });
     }
   });
@@ -42,7 +42,7 @@ exports.getAll = (req, res) => {
 exports.get = (req, res) => {
   let id = req.params.id;
 
-  Incident.find({ _id: id }, (err, incidents) => {
+  Incident.find({ _id: id }, (err, incident) => {
     if (err) {
       res.json({
         success: false,
@@ -52,8 +52,8 @@ exports.get = (req, res) => {
       res.json({
         success: true,
         message: `Incident for id: ${id}`,
-        count: incidents.length,
-        incidents: appHelper.stripAll(incidents, ['_id', 'location', 'date', 'context'])
+        count: incident.length,
+        incident: appHelper.stripAll(incident, incidentHelper.responseKeys())
       });
     }
   });
@@ -63,14 +63,6 @@ exports.get = (req, res) => {
 // // Create an incident
 // //
 exports.add = (req, res) => {
-
-  if (!req.incident) {
-    res.json({
-      success: false,
-      message: 'Incidents need to be reported by a victim. Please ensure that the request includes a victim.',
-      victim: victim,
-    });
-  } else {
     let incident = new Incident();
     let info = req.body
 
@@ -86,12 +78,11 @@ exports.add = (req, res) => {
         res.json({
           success: true,
           message: 'A new Incident has been added to the database.',
-          incident: appHelper.strip(incident, ['_id', 'location', 'date', 'context'])
+          incident: appHelper.strip(incident, incidentHelper.responseKeys())
         });
       }
     });
   }
-};
 
 //
 // Update an incident
@@ -115,7 +106,7 @@ exports.update = (req, res) => {
         res.json({
           success: true,
           message: `Incident for id: ${incident.id} succecfully updated`,
-          incident: appHelper.strip(incident, ['_id', 'location', 'date', 'context'])
+          incident: appHelper.strip(incident, incidentHelper.responseKeys())
         });
       }
     });

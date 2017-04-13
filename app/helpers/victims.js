@@ -11,15 +11,14 @@
 //
 // Records data on an instance of an incident
 //
-exports.report = (incident, info) => {
-  incident.location     = info.location;
-  incident.date         = info.date;
-  incident.context      = info.context
+exports.report = (victim, info) => {
+  victim.name       = info.name;
+  victim.anonymous  = info.anonymous;
 }
 
 //
 // Response keys for incidents
 //
 exports.responseKeys = () => {
-  return ['_id', 'location', 'date', 'context']
+  return ['_id', 'victim']
 }

@@ -20,12 +20,13 @@ let db = require('./app/database/connection');
 // Models
 //
 let Incident = require('./app/models/incident');
-let Question = require('./app/models/question');
+// let Question = require('./app/models/question');
 
 //
 // Controllers
 //
 let IncidentController = require('./app/controllers/incident');
+let VictimController = require('./app/controllers/victim');
 
 // ====================
 // App Setup
@@ -65,9 +66,10 @@ router.route('/incident/:id')
 router.route('/incident/:id/victim')
   .get(VictimController.get)
   .put(VictimController.update);
-router.route('/incident/:id/details')
-  .get(DetailsController.get)
-  .put(DetailsController.update);
+// router.route('/incident/:id/details')
+//   .get(DetailsController.get)
+//   .put(DetailsController.update);
+
 // router.route('/auth')
 //   .post(AuthController.authenticate);
 // router.route('/users')
