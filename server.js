@@ -27,6 +27,7 @@ let Incident = require('./app/models/incident');
 //
 let IncidentController = require('./app/controllers/incident');
 let VictimController = require('./app/controllers/victim');
+let DevController = require('./app/controllers/dev'); //TK:: REMOVE BEFORE PRODUCTION
 
 // ====================
 // App Setup
@@ -66,6 +67,9 @@ router.route('/incident/:id')
 router.route('/incident/:id/victim')
   .get(VictimController.get)
   .put(VictimController.update);
+router.route('/dev') //TK:: REMOVE BEFORE PRODUCTION
+  .delete(DevController.resetDB);
+  .post(DevController.seedDB)
 // router.route('/incident/:id/details')
 //   .get(DetailsController.get)
 //   .put(DetailsController.update);

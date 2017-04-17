@@ -21,5 +21,5 @@ exports.report = (incident, info) => {
 // Response keys for incidents
 //
 exports.responseKeys = () => {
-  return ['_id', 'location', 'date', 'context']
+  return ['_id', 'location', 'date', 'context', 'victim']
 }

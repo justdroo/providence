@@ -27,23 +27,19 @@ let incidentHelper= require('../helpers/incidents')
 exports.get = (req, res) => {
   let id = req.params.id;
 
-  Incident.find({ _id: id }, (err, incident) => {
+  Incident.find({ _id: id }, (err, incidents) => {
+    let incident = incidents[0];
+
     if (err) {
       res.json({
         success: false,
         error: err
       });
-    } else if (_.isEmpty(incident.victim)) {
-      res.json({
-        success: false,
-        error: 'Incident exists but does not contain any victim data',
-        incident: appHelper.stripAll(incident, incidentHelper.responseKeys())
-      })
     } else {
       res.json({
         success: true,
         message: `Victim from Incident id: ${id}`,
-        victim: appHelper.stripAll(incident, victimHelper.responseKeys())
+        victim: appHelper.strip(incident, victimHelper.responseKeys())
       });
     }
   });
@@ -59,7 +55,7 @@ exports.update = (req, res) => {
   Incident.find({ _id: id }, (err, incidents) => {
     let incident = incidents[0]
 
-    victimHelper.report(incident.victim, info)
+    victimHelper.report(incident, info)
 
     incident.save((err) => {
       if (err) {
@@ -71,7 +67,7 @@ exports.update = (req, res) => {
         res.json({
           success: true,
           message: `Victim information for Incident id: ${incident.id} succecfully updated`,
-          incident: appHelper.strip(incident, victimHelper.responseKeys())
+          victim: appHelper.strip(incident, victimHelper.responseKeys())
         });
       }
     });
