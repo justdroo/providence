@@ -69,7 +69,6 @@ router.route('/incident/:id/victim')
   .put(VictimController.update);
 router.route('/dev') //TK:: REMOVE BEFORE PRODUCTION
   .delete(DevController.resetDB);
-  .post(DevController.seedDB)
 // router.route('/incident/:id/details')
 //   .get(DetailsController.get)
 //   .put(DetailsController.update);
