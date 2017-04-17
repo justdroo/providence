@@ -12,16 +12,46 @@ let _ = require('lodash');
 // Records data on an instance of an incident
 //
 exports.report = (incident, info) => {
-  if (!_.isUndefined(info.location)) {
-    incident.location = info.location;
-  }
-
   if (!_.isUndefined(info.date)) {
     incident.date = info.date;
   }
 
+  reportLocation(incident, info)
+
+  reportContext(incident, info)
+}
+//
+// Records data specific for location of an Incident
+//
+reportLocation = (incident, info) => {
+  if (!_.isUndefined(info.location)) {
+    if (!_.isUndefined(info.location.category)) {
+      incident.location.category = info.location.category
+    }
+
+    if (!_.isUndefined(info.location.city)) {
+      incident.location.city = info.location.city
+    }
+  }
+}
+
+//
+// Records data specific for context of an Incident
+//
+reportContext = (incident, info) => {
   if (!_.isUndefined(info.context)) {
     incident.context = info.context
+    // if (!_.isUndefined(info.context.type)) {
+    //   incident.context.type = info.context.type
+    // }
+
+    // if (!_.isUndefined(info.context.reason)) {
+    //   incident.context.reason = info.context.reason
+    // }
+
+    // if (!_.isUndefined(info.context.description)) {
+    //   incident.context.description = info.context.description
+    // }
   }
 }
 
