@@ -39,9 +39,7 @@ exports.get = (req, res) => {
       res.json({
         success: true,
         message: `Victim from Incident id: ${id}`,
-        incident: appHelper.strip(incident, victimHelper.responseKeys()),
-        incident_victim_name_undefined: _.isUndefined(incident.victim.name),
-        incident_victim_anonymous_undefined: _.isUndefined(incident.victim.anonymous)
+        incident: appHelper.strip(incident, victimHelper.responseKeys())
       });
     }
   });
@@ -69,8 +67,7 @@ exports.update = (req, res) => {
         res.json({
           success: true,
           message: `Victim information for Incident id: ${incident.id} succecfully updated`,
-          incident: appHelper.strip(incident, victimHelper.responseKeys()),
-          forDROO: info
+          incident: appHelper.strip(incident, victimHelper.responseKeys())
         });
       }
     });
