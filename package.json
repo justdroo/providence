@@ -1,6 +1,6 @@
 {
   "name": "providence",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "an api for Sankofa to record hyperlocal data on hate incidents in the community",
   "main": "server.js",
   "scripts": {
