@@ -40,18 +40,17 @@ reportLocation = (incident, info) => {
 //
 reportContext = (incident, info) => {
   if (!_.isUndefined(info.context)) {
-    incident.context = info.context
-    // if (!_.isUndefined(info.context.type)) {
-    //   incident.context.type = info.context.type
-    // }
+    if (!_.isUndefined(info.context.category)) {
+      incident.context.category = info.context.category
+    }
 
-    // if (!_.isUndefined(info.context.reason)) {
-    //   incident.context.reason = info.context.reason
-    // }
+    if (!_.isUndefined(info.context.reason)) {
+      incident.context.reason = info.context.reason
+    }
 
-    // if (!_.isUndefined(info.context.description)) {
-    //   incident.context.description = info.context.description
-    // }
+    if (!_.isUndefined(info.context.description)) {
+      incident.context.description = info.context.description
+    }
   }
 }
 
