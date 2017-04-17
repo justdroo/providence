@@ -15,6 +15,7 @@ exports.report = (incident, info) => {
   if (!_.isUndefined(info.victim.name)) {
     incident.victim.name = info.victim.name
   }
+  
   if (!_.isUndefined(info.victim.anonymous)) {
     incident.victim.anonymous = info.victim.anonymous
   }
