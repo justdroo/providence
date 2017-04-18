@@ -59,10 +59,10 @@ router.get('/', (req, res) => {
 // API Routes
 //
 router.route('/incident')
-  .get(IncidentController.getAll)
+  .get(IncidentController.getAll) //TESTED
   .post(IncidentController.add);
 router.route('/incident/:id')
-  .get(IncidentController.get)
+  .get(IncidentController.get) //TESTED
   .put(IncidentController.update);
 router.route('/incident/:id/victim')
   .get(VictimController.get)

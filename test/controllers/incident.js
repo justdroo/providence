@@ -115,6 +115,8 @@ let testIncidents = [
   }
 ]
 
+let validIncident = testIncidents[0]
+
 // ====================
 // Testing
 // ====================
@@ -199,6 +201,63 @@ describe('GET /incident/:id (#get)', () => {
           res.body.incident.should.have.length(1)
           res.body.incident[0].should.be.a('object')
           done();
+      });
+    });
+  });
+});
+
+//
+// #POST /incident
+//
+
+describe('POST /incident (#add)', () => {
+  it('should respond with a status code 200', (done) => {
+    chai.request(address)
+      .post('/incident')
+      .send()
+      .end((err, res) => {
+        res.should.have.status(200);
+        res.body.success.should.equal(true);
+        done();
+      });
+  });
+
+  it('should return a JSON object with "incident" property', (done) => {
+    chai.request(address)
+      .post('/incident')
+      .send()
+      .end((err, res) => {
+        res.body.should.have.property('incident');
+        done();
+      });
+  });
+
+  it('should return the new incident as an object', (done) => {
+    chai.request(address)
+      .post('/incident')
+      .send(validIncident)
+      .end((err, res) => {
+        res.body.incident.should.have.property('date');
+        res.body.incident.date.should.equal(validIncident.date)
+        res.body.incident.should.have.property('context');
+        res.body.incident.context.category.should.equal(validIncident.context.category);
+        res.body.incident.context.reason.should.equal(validIncident.context.reason);
+        res.body.incident.context.description.should.equal(validIncident.context.description);
+        res.body.incident.should.have.property('location');
+        res.body.incident.location.city.should.equal(validIncident.location.city);
+        res.body.incident.location.category.should.equal(validIncident.location.category);
+        done();
+      });
+  });
+
+  it('should add a new incident to the database', (done) => {
+    chai.request(address)
+    .post('/incident')
+    .send(validIncident)
+    .end((err, res) => {
+      Incident.find({}, (err, incidents) => {
+        incidents.length.should.equal(testIncidents.length + 1)
+        done();
       });
     });
   });
