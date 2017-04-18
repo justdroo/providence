@@ -4,7 +4,7 @@
   "description": "an api for Sankofa to record hyperlocal data on hate incidents in the community",
   "main": "server.js",
   "scripts": {
-    "test": "mocha",
+    "test": "mocha --timeout 120000",
     "linter": "./node_modules/.bin/eslint ."
   },
   "repository": {

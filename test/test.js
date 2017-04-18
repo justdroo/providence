@@ -2,11 +2,11 @@
 // Controllers
 //
 require('./controllers/incident')
-require('./controllers/victim')
+// require('./controllers/victim')
 
 //
 // Helpers
 //
-require('./helpers/app')
-require('./helpers/incident')
-require('./helpers/victim')
+// require('./helpers/app')
+// require('./helpers/incident')
+// require('./helpers/victim')

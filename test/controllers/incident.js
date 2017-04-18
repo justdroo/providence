@@ -55,3 +55,19 @@ before((done) => {
     });
   });
 });
+
+// ====================
+// Test Parameters
+// ====================
+
+
+// ====================
+// Testing
+// ====================
+describe('#getAll', function () {
+  it('should return all incidents in the database', function(done){
+    var sum = 1 + 1;
+    sum.should.equal(2);
+    done();
+  })
+})
