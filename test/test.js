@@ -2,7 +2,7 @@
 // Controllers
 //
 require('./controllers/incident')
-// require('./controllers/victim')
+require('./controllers/victim')
 
 //
 // Helpers

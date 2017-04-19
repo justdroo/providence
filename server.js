@@ -63,10 +63,10 @@ router.route('/incident')
   .post(IncidentController.add); //TESTED
 router.route('/incident/:id')
   .get(IncidentController.get) //TESTED
-  .put(IncidentController.update);
+  .put(IncidentController.update); //TESTED
 router.route('/incident/:id/victim')
-  .get(VictimController.get)
-  .put(VictimController.update);
+  .get(VictimController.get) //TESTED
+  .put(VictimController.update); //TESTED
 router.route('/dev') //TK:: REMOVE BEFORE PRODUCTION
   .post(DevController.blankDB)
   // .delete(DevController.resetDB)
