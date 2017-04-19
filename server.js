@@ -20,7 +20,6 @@ let db = require('./app/database/connection');
 // Models
 //
 let Incident = require('./app/models/incident');
-// let Question = require('./app/models/question');
 
 //
 // Controllers
@@ -67,12 +66,9 @@ router.route('/incident/:id')
 router.route('/incident/:id/victim')
   .get(VictimController.get) //TESTED
   .put(VictimController.update); //TESTED
+
 router.route('/dev') //TK:: REMOVE BEFORE PRODUCTION
   .post(DevController.blankDB)
-  // .delete(DevController.resetDB)
-// router.route('/incident/:id/details')
-//   .get(DetailsController.get)
-//   .put(DetailsController.update);
 
 // router.route('/auth')
 //   .post(AuthController.authenticate);
