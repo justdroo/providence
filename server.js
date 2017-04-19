@@ -20,7 +20,6 @@ let db = require('./app/database/connection');
 // Models
 //
 let Incident = require('./app/models/incident');
-// let Question = require('./app/models/question');
 
 //
 // Controllers
@@ -59,20 +58,17 @@ router.get('/', (req, res) => {
 // API Routes
 //
 router.route('/incident')
-  .get(IncidentController.getAll)
-  .post(IncidentController.add);
+  .get(IncidentController.getAll) //TESTED
+  .post(IncidentController.add); //TESTED
 router.route('/incident/:id')
-  .get(IncidentController.get)
-  .put(IncidentController.update);
+  .get(IncidentController.get) //TESTED
+  .put(IncidentController.update); //TESTED
 router.route('/incident/:id/victim')
-  .get(VictimController.get)
-  .put(VictimController.update);
+  .get(VictimController.get) //TESTED
+  .put(VictimController.update); //TESTED
+
 router.route('/dev') //TK:: REMOVE BEFORE PRODUCTION
   .post(DevController.blankDB)
-  // .delete(DevController.resetDB)
-// router.route('/incident/:id/details')
-//   .get(DetailsController.get)
-//   .put(DetailsController.update);
 
 // router.route('/auth')
 //   .post(AuthController.authenticate);

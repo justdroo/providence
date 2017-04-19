@@ -12,14 +12,13 @@ let _ = require('lodash');
 // Records data on an instance of an incident
 //
 exports.report = (incident, info) => {
-  if (!_.isUndefined(info.victim.name)) {
-    incident.victim.name = info.victim.name
+  if (!_.isUndefined(info.name)) {
+    incident.victim.name = info.name
   }
-  
-  if (!_.isUndefined(info.victim.anonymous)) {
-    incident.victim.anonymous = info.victim.anonymous
+
+  if (!_.isUndefined(info.anonymous)) {
+    incident.victim.anonymous = info.anonymous
   }
-  // incident.victim.anonymous  = info.victim.anonymous;
 }
 
 //
