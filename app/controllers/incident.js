@@ -19,6 +19,9 @@ let incidentHelper = require('../helpers/incidents')
 // Get all incidents
 //
 exports.getAll = (req, res) => {
+  console.log('Request made to retrieve all incidents')
+  console.log('Querying Database...')
+
   Incident.find((err, incidents) => {
     if (err) {
       res.json({
@@ -41,6 +44,8 @@ exports.getAll = (req, res) => {
 // //
 exports.get = (req, res) => {
   let id = req.params.id;
+  console.log(`Request made to retrieve incident ${id}`)
+  console.log('Querying database...')
 
   Incident.find({ _id: id }, (err, incident) => {
     if (err) {
@@ -63,11 +68,16 @@ exports.get = (req, res) => {
 // // Create an incident
 // //
 exports.add = (req, res) => {
+    console.log('Request made to create a new incident')
+    console.log('Creating...')
     let incident = new Incident();
+    console.log('New Incident Created')
+
     let info = req.body
 
     incidentHelper.report(incident, info)
 
+    console.log('Saving to Database...')
     incident.save((err) => {
       if (err) {
         res.json({
@@ -82,6 +92,7 @@ exports.add = (req, res) => {
         });
       }
     });
+    console.log('Done')
   }
 
 //
