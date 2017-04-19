@@ -116,6 +116,24 @@ let testIncidents = [
 ]
 
 let validIncident = testIncidents[0]
+let updatedIncident = {
+  date: "1009-08-02T17:03:13.441Z",
+  location: {
+    city: "Helms Deep",
+    state: "Middle Earth",
+    zip: 11111,
+    category: "castle"
+  },
+  context: {
+    category: "orc attack",
+    reason: "the one ring",
+    description: "Evil Wizard Sauran attacking Helms Deep"
+  },
+  victim: {
+    name: "Gandalph the White",
+    anonymous: true
+  }
+}
 
 // ====================
 // Testing
@@ -258,6 +276,70 @@ describe('POST /incident (#add)', () => {
       Incident.find({}, (err, incidents) => {
         incidents.length.should.equal(testIncidents.length + 1)
         done();
+      });
+    });
+  });
+});
+
+//
+// #PUT /incident/:id
+//
+
+describe('PUT /incident/:id (#update)', () => {
+  it('should respond with a 200 status code', (done) => {
+    Incident.find({}, (err, incidents) => {
+      let incident = incidents[0];
+
+      chai.request(address)
+        .put(`/incident/${incident.id}`)
+        .send(updatedIncident)
+        .end((err, res) => {
+          res.should.have.status(200);
+          res.body.success.should.equal(true);
+          done();
+        });
+    });
+  });
+
+  it('should return the updated incident with the new information', (done) => {
+    Incident.find({}, (err, incidents) => {
+      let incident = incidents[0];
+
+      chai.request(address)
+        .put(`/incident/${incident.id}`)
+        .send(updatedIncident)
+        .end((err, res) => {
+          res.body.incident.should.be.a('object');
+          res.body.incident.date.should.equal(updatedIncident.date)
+          res.body.incident.context.category.should.equal(updatedIncident.context.category);
+          res.body.incident.context.reason.should.equal(updatedIncident.context.reason);
+          res.body.incident.context.description.should.equal(updatedIncident.context.description);
+          res.body.incident.location.city.should.equal(updatedIncident.location.city);
+          res.body.incident.location.state.should.equal(updatedIncident.location.state);
+          res.body.incident.location.category.should.equal(updatedIncident.location.category);
+          done();
+        });
+    });
+  });
+
+  it('should update the incident in the the database', (done) => {
+    Incident.find({}, (err, incidents) => {
+      let incident = incidents[0];
+
+      chai.request(address)
+      .put(`/incident/${incident.id}`)
+      .send(updatedIncident)
+      .end((err, res) => {
+        Incident.find({'_id':`${incident.id}`}, (err, incidents) => {
+          let incident = incidents[0]
+          incident.context.category.should.equal(updatedIncident.context.category);
+          incident.context.reason.should.equal(updatedIncident.context.reason);
+          incident.context.description.should.equal(updatedIncident.context.description);
+          incident.location.city.should.equal(updatedIncident.location.city);
+          incident.location.state.should.equal(updatedIncident.location.state);
+          incident.location.category.should.equal(updatedIncident.location.category);
+          done();
+        });
       });
     });
   });

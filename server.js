@@ -60,7 +60,7 @@ router.get('/', (req, res) => {
 //
 router.route('/incident')
   .get(IncidentController.getAll) //TESTED
-  .post(IncidentController.add);
+  .post(IncidentController.add); //TESTED
 router.route('/incident/:id')
   .get(IncidentController.get) //TESTED
   .put(IncidentController.update);

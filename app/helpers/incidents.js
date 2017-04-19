@@ -32,6 +32,14 @@ reportLocation = (incident, info) => {
     if (!_.isUndefined(info.location.city)) {
       incident.location.city = info.location.city
     }
+
+    if (!_.isUndefined(info.location.state)) {
+      incident.location.state = info.location.state
+    }
+
+    if (!_.isUndefined(info.location.zip)) {
+      incident.location.zip = info.location.zip
+    }
   }
 }
 
