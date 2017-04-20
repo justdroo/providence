@@ -24,9 +24,9 @@ let Incident = require('./app/models/incident');
 //
 // Controllers
 //
-let IncidentController = require('./app/controllers/incident');
-let VictimController = require('./app/controllers/victim');
-let BotController = require('./app/controllers/bot');
+let IncidentController  = require('./app/controllers/incident');
+let VictimController    = require('./app/controllers/victim');
+let BotController       = require('./app/controllers/bot');
 // let DevController = require('./app/controllers/dev'); //TK:: REMOVE BEFORE PRODUCTION
 
 // ====================
@@ -69,6 +69,7 @@ router.route('/incident/:id/victim')
   .put(VictimController.update); //TESTED
 router.route('/webhook')
   .get(BotController.verify)
+  .post(BotController.whatChuSaying);
 
 // router.route('/dev') //TK:: REMOVE BEFORE PRODUCTION
   // .post(DevController.blankDB)
