@@ -9,8 +9,9 @@ let request = require('request');
 // Helpers
 // ====================
 
-exports.sendTextMessage = (sender, text) => {
+exports.sendMessage = (sender, text) => {
   let messageData = { text:text }
+  console.log("Inside Send Message")
 
   request({
 	  url: 'https://graph.facebook.com/v2.6/me/messages',
@@ -22,10 +23,10 @@ exports.sendTextMessage = (sender, text) => {
 					}
 		},
 		(error, response, body) => {
-				if (error) {
-				    console.log('Error sending messages: ', error)
-				} else if (response.body.error) {
-				    console.log('Error: ', response.body.error)
-			  }
+			if (error) {
+				console.log('Error sending messages: ', error)
+			} else if (response.body.error) {
+				console.log('Error: ', response.body.error)
+			}
 		})
 }

@@ -27,6 +27,7 @@ exports.verify = (req, res) => {
 // Checking to see if the bot is working
 //
 exports.receiveMessage = (req, res) => {
+  console.log("Inside of receiveMessage")
   let messaging_events = req.body.entry[0].messaging
 
   for (let i = 0; i < messaging_events.length; i++) {
@@ -36,7 +37,7 @@ exports.receiveMessage = (req, res) => {
 	  if (event.message && event.message.text) {
 		  let text = event.message.text
 
-		  botHelper.sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
+		  botHelper.sendMessage(sender, "Text received, echo: " + text.substring(0, 200))
 	  }
   }
   res.json({
