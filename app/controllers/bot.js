@@ -26,7 +26,7 @@ exports.verify = (req, res) => {
 //
 // Checking to see if the bot is working
 //
-exports.whatChuSaying = (req, res) => {
+exports.receiveMessage = (req, res) => {
   let messaging_events = req.body.entry[0].messaging
 
   for (let i = 0; i < messaging_events.length; i++) {
@@ -39,5 +39,7 @@ exports.whatChuSaying = (req, res) => {
 		  botHelper.sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
 	  }
   }
-  res.sendStatus(200)
+  res.json({
+    success: true
+  });
 }
