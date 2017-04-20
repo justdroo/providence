@@ -91,8 +91,9 @@ exports.add = (req, res) => {
           incident: appHelper.strip(incident, incidentHelper.responseKeys())
         });
       }
+      console.log('Done')
     });
-    console.log('Done')
+
   }
 
 //

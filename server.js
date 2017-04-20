@@ -70,11 +70,6 @@ router.route('/incident/:id/victim')
 // router.route('/dev') //TK:: REMOVE BEFORE PRODUCTION
   // .post(DevController.blankDB)
 
-// router.route('/auth')
-//   .post(AuthController.authenticate);
-// router.route('/users')
-  // .post(UserController.add);
-
 // ====================
 // Register Routes
 // ====================
