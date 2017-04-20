@@ -37,7 +37,7 @@ exports.whatChuSaying = (req, res) => {
 		  let text = event.message.text
 
 		  botHelper.sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
-	    }
+	  }
   }
   res.sendStatus(200)
 }
