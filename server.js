@@ -66,6 +66,8 @@ router.route('/incident/:id')
 router.route('/incident/:id/victim')
   .get(VictimController.get) //TESTED
   .put(VictimController.update); //TESTED
+router.route('/webhook')
+  .get(BotController.verify)
 
 // router.route('/dev') //TK:: REMOVE BEFORE PRODUCTION
   // .post(DevController.blankDB)
