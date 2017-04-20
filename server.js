@@ -26,6 +26,7 @@ let Incident = require('./app/models/incident');
 //
 let IncidentController = require('./app/controllers/incident');
 let VictimController = require('./app/controllers/victim');
+let BotController = require('.app/controllers/bot');
 // let DevController = require('./app/controllers/dev'); //TK:: REMOVE BEFORE PRODUCTION
 
 // ====================
