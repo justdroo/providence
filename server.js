@@ -45,9 +45,10 @@ let port = process.env.PORT;
 // Bot Setup
 // ====================
 
+let botHelper = require('./app/helpers/bot')
 let bot = new FBMessenger(process.env.FB_PAGE_ACCESS)
 
-// bot.setWelcomeMessage(pageId, message[, cb])
+bot.setWelcomeMessage(process.env.FB_PAGE_ACCESS, botHelper.welcome)
 
 // ====================
 // Routing
