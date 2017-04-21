@@ -8,7 +8,7 @@ let FBMessenger = require('fb-messenger')
 // Models
 // ====================
 
-let bot = new FBMessenger(process.env.FB_VERIFY_TOKEN)
+let bot = new FBMessenger(process.env.FB_PAGE_ACCESS)
 
 // ====================
 // Helpers
