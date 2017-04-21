@@ -4,6 +4,7 @@
 
 let express     = require('express');
 let bodyParser  = require('body-parser');
+var FBMessenger = require('fb-messenger')
 
 require('dotenv-safe').load();
 
@@ -39,6 +40,14 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 let port = process.env.PORT;
+
+// ====================
+// Bot Setup
+// ====================
+
+let bot = new FBMessenger(process.env.FB_PAGE_ACCESS)
+
+bot.setWelcomeMessage(pageId, message[, cb])
 
 // ====================
 // Routing

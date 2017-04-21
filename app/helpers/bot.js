@@ -9,6 +9,8 @@ let request = require('request');
 // Helpers
 // ====================
 
+exports.welcome = 'Hello, my name is providence. I am a bot that will help you report incidents of hate and bias in your community. How can I help you today?'
+
 exports.sendMessage = (sender, text) => {
   let messageData = { text:text }
 
