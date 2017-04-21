@@ -47,7 +47,7 @@ let port = process.env.PORT;
 
 let bot = new FBMessenger(process.env.FB_PAGE_ACCESS)
 
-bot.setWelcomeMessage(pageId, message[, cb])
+// bot.setWelcomeMessage(pageId, message[, cb])
 
 // ====================
 // Routing
