@@ -11,7 +11,6 @@ let request = require('request');
 
 exports.sendMessage = (sender, text) => {
   let messageData = { text:text }
-  console.log("Inside Send Message")
 
   request({
 	  url: 'https://graph.facebook.com/v2.6/me/messages',
