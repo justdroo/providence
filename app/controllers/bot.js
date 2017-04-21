@@ -1,6 +1,14 @@
 // ====================
+// Third-Party Modules
+// ====================
+
+let FBMessenger = require('fb-messenger')
+
+// ====================
 // Models
 // ====================
+
+let bot = new FBMessenger(process.env.FB_PAGE_ACCESS)
 
 // ====================
 // Helpers
@@ -32,12 +40,11 @@ exports.receiveMessage = (req, res) => {
   for (let i = 0; i < messaging_events.length; i++) {
 	  let event = req.body.entry[0].messaging[i]
 	  let sender = event.sender.id
-    console.log(`SENDER:: ${sender}`)
 
 	  if (event.message && event.message.text) {
 		  let text = event.message.text
 
-		  botHelper.sendMessage(sender, "Text received, echo: " + text.substring(0, 200))
+		  bot.sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
 	  }
   }
   res.json({

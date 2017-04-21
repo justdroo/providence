@@ -12,6 +12,8 @@ let request = require('request');
 exports.sendMessage = (sender, text) => {
   let messageData = { text:text }
 
+  //ISSUE:: Messaging works, however comes back with a #100 error Sender not found??
+  // shouldn't be a problem until try to get approved
   request({
 	  url: 'https://graph.facebook.com/v2.6/me/messages',
 	  qs: { access_token:process.env.FB_PAGE_ACCESS },

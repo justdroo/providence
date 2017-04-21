@@ -14,13 +14,14 @@
   },
   "license": "TBD",
   "dependencies": {
-      "express": "~4.0.0",
-      "mongodb": "^2.2.24",
-      "mongoose": "~3.6.13",
-      "body-parser": "~1.0.1",
-      "dotenv-safe": "^4.0.3",
-      "lodash": "^4.17.4",
-      "request": "^2.81.0"
+    "body-parser": "~1.0.1",
+    "dotenv-safe": "^4.0.3",
+    "express": "~4.0.0",
+    "fb-messenger": "^1.1.0",
+    "lodash": "^4.17.4",
+    "mongodb": "^2.2.24",
+    "mongoose": "~3.6.13",
+    "request": "^2.81.0"
   },
   "devDependencies": {
     "chai": "^3.5.0",
