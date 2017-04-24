@@ -32,7 +32,7 @@ exports.verify = (req, res) => {
 };
 
 //
-// Checking to see if the bot is working
+// When user posts a message to Bot, this is where it gets processed
 //
 exports.receiveMessage = (req, res) => {
   let messaging_events = req.body.entry[0].messaging
@@ -42,9 +42,9 @@ exports.receiveMessage = (req, res) => {
 	  let sender = event.sender.id
 
 	  if (event.message && event.message.text) {
-		  let text = event.message.text
-
-		  bot.sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
+		  // let text = event.message.text
+		  // bot.sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
+      botHelper.sendQuickReply(sender, 'Pick a color');
 	  }
   }
   res.json({
