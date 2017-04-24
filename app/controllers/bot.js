@@ -5,7 +5,7 @@
 let FBMessenger = require('fb-messenger')
 
 // ====================
-// Models
+// Third-Party Models
 // ====================
 
 let bot = new FBMessenger(process.env.FB_PAGE_ACCESS)
