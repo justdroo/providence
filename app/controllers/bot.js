@@ -40,12 +40,43 @@ exports.receiveMessage = (req, res) => {
   for (let i = 0; i < messaging_events.length; i++) {
 	  let event = req.body.entry[0].messaging[i]
 	  let sender = event.sender.id
+    //
+    //Handle Postback and messaging flow
+    //
+    if (event.message && event.message.quick_reply) {
+      let payload = JSON.parse(event.message.quick_reply.payload)
+      //
+      // Welcome
+      //
+      if (payload.question === "welcome") {
+        if (payload.start === false) {
+          bot.sendTextMessage(sender, "Please type hello again when you are ready to begin")
+        }
 
+        if (payload.start === true) {
+          botHelper.sendAnonymousQ(sender, "Would you like to remain anonymous?")
+        }
+      }
+      //
+      //Anonymous
+      //
+      if (payload.question === "anonymous") {
+        //TK:: record answer
+        bot.sendTextMessage(sender, "Anonymous confirmed")
+      }
+    };
+    //
+    // Handle user input
+    //
 	  if (event.message && event.message.text) {
-		  // let text = event.message.text
-		  // bot.sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
-      botHelper.sendQuickReply(sender, 'Pick a color');
-	  }
+		  let text = event.message.text.toLowerCase();
+
+      if (text === 'hello') {
+        botHelper.sendWelcome(sender, botHelper.welcome);
+      } else {
+        bot.sendTextMessage(sender, 'To get started, please type "hello"')
+      }
+	  };
   }
   res.json({
     success: true
